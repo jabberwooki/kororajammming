@@ -35,7 +35,9 @@ class App extends React.Component {
       return;
     }
     else {
-      this.setState({playlistTracks: this.state.playlistTracks.push(track)});
+      let tracks = this.state.playlistTracks;
+      tracks.push(track);
+      this.setState({playlistTracks: tracks});
     }
   }
 
@@ -65,7 +67,7 @@ class App extends React.Component {
     
     return (
       <div>
-        <h1>Ja<span className="highlight">mmm</span>ing</h1>
+        <h1>Korora Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
 
           <SearchBar

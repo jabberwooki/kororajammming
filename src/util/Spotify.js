@@ -2,27 +2,29 @@ let accessToken;
 let expirationTime;
 
 const clientID = 'c8b79be3c9df45358d525296da8d39c5';
-const redirectURI = 'http://kororajammming.surge.sh';
+// const redirectURI = 'http://korora-jammming.surge.sh';
+const redirectURI = 'http://localhost:3000/';
 
 const Spotify = {
   getAccessToken() {
-    const url = window.location.href;
-    const token = url.match(/access_token=([^&]*)/);
-    const time = url.match(/expires_in=([^&]*)/);
-
     if (accessToken) {
       return accessToken;
     }
-    else if (token && time) {
-      accessToken = token[1];
-      expirationTime = time[1];
-      window.setTimeout(() => accessToken = '', expirationTime * 1000);
-      window.history.pushState('Access Token', null, '/');
-      return accessToken;
-    }
     else {
-      window.location = 
-        `https://accounts.spotify.com/authorize?client_id=${clientID}&redirect_uri=${redirectURI}&response_type=token`;
+      const url = window.location.href;
+      const token = url.match(/access_token=([^&]*)/);
+      const time = url.match(/expires_in=([^&]*)/);
+
+      if (token && time) {
+        accessToken = token[1];
+        expirationTime = time[1];
+        window.setTimeout(() => accessToken = '', expirationTime * 1000);
+        window.history.pushState('Access Token', null, '/');
+      }
+      else {
+        window.location =
+        `https://accounts.spotify.com/authorize?client_id=${clientID}&redirect_uri=${redirectURI}&response_type=token&scope=playlist-modify-public`;
+      }
     }
   },
 
@@ -42,11 +44,11 @@ const Spotify = {
       jsonResponse => {
         if (jsonResponse.tracks) {
           return jsonResponse.tracks.items.map(track => ({
-            ID: track.id,
-            Name: track.name,
-            Artist: track.artist,
-            Album: track.album,
-            URI: track.uri
+            id: track.id,
+            name: track.name,
+            artists: track.artists,
+            album: track.album,
+            uri: track.uri
           }));
         }
         else {
@@ -86,7 +88,7 @@ const Spotify = {
             {
               method: 'POST',
               headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${accessToken}`
                 // Content-type: 'application/json'
               },
               body: JSON.stringify({name: playlistName})
