@@ -2,8 +2,8 @@ let accessToken;
 let expirationTime;
 
 const clientID = 'c8b79be3c9df45358d525296da8d39c5';
-// const redirectURI = 'http://korora-jammming.surge.sh';
-const redirectURI = 'http://localhost:3000/';
+const redirectURI = 'http://korora-jammming.surge.sh';
+//const redirectURI = 'http://localhost:3000/';
 
 const Spotify = {
   getAccessToken() {
