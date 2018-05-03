@@ -1,0 +1,7 @@
+Korora Jammming v0.2 / 2018-05-03
+---------------------------------
+Various syntax corrections until app works.
+
+Korora Jammming v0.1 / 2018-05-02
+---------------------------------
+First release
