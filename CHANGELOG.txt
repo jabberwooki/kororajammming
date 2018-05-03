@@ -1,4 +1,8 @@
-Korora Jammming v0.2 / 2018-05-03
+Korora Jammming v1.1 / 2018-05-03
+---------------------------------
+Redirect url changed from localhost to surge url.
+
+Korora Jammming v1.0 / 2018-05-03
 ---------------------------------
 Various syntax corrections until app works.
 
